@@ -15,6 +15,9 @@
     <description>sonarqube</description>
     <properties>
         <java.version>11</java.version>
+        <sonar.login>c10b3d15b03b5bd1e9f9a4c485eb97b2b10b993f</sonar.login>
+        <sonar.projectKey>sonar:OrderApplication</sonar.projectKey>
+        <sonar.projectName>OrderApplication</sonar.projectName>
     </properties>
     <dependencies>
         <dependency>
