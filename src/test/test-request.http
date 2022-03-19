@@ -1,0 +1,18 @@
+POST http://localhost:8000/orders
+Content-Type: application/json
+
+{
+    "member": "test",
+    "status": "ORDER"
+}
+
+###
+POST http://localhost:8000/orders
+Content-Type: application/json
+
+{
+    "member": "test2",
+    "status": "REFUND"
+}
+
+###
