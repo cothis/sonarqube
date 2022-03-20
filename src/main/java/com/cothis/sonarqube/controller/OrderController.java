@@ -23,14 +23,14 @@ public class OrderController {
 	private final OrderService orderService;
 
 	@ExceptionHandler(IllegalArgumentException.class)
-	public Result<String> handleException(IllegalArgumentException e) {
+	public ResponseResult<String> handleException(IllegalArgumentException e) {
 		log.error(e.getMessage(), e);
-		return new Result<>(false, e.getMessage());
+		return new ResponseResult<>(false, e.getMessage());
 	}
 
 	@GetMapping
-	public Result<OrdersDto> orders() {
-		return new Result<>(true, new OrdersDto(orderService
+	public ResponseResult<OrdersDto> orders() {
+		return new ResponseResult<>(true, new OrdersDto(orderService
 				.findAll()
 				.stream().map(OrderDto::new)
 				.collect(Collectors.toList())));
@@ -38,19 +38,19 @@ public class OrderController {
 
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
-	public Result<OrderDto> create(@RequestBody CreateParameter createParameter) {
+	public ResponseResult<OrderDto> create(@RequestBody CreateParameter createParameter) {
 		Order order = new Order(createParameter.getMember(), createParameter.getStatus());
-		return new Result<>(true, new OrderDto(orderService.create(order)));
+		return new ResponseResult<>(true, new OrderDto(orderService.create(order)));
 	}
 
 	@GetMapping("{id}")
-	public Result<OrderDto> findById(@PathVariable Long id) {
-		return new Result<>(true, new OrderDto(orderService.findById(id)));
+	public ResponseResult<OrderDto> findById(@PathVariable Long id) {
+		return new ResponseResult<>(true, new OrderDto(orderService.findById(id)));
 	}
 
 	@AllArgsConstructor
 	@Getter
-	private static class Result<T> {
+	private static class ResponseResult<T> {
 		private boolean result;
 		private T data;
 	}
