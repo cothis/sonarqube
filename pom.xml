@@ -13,11 +13,26 @@
     <version>0.0.1-SNAPSHOT</version>
     <name>sonarqube</name>
     <description>sonarqube</description>
+
+    <profiles>
+        <profile>
+            <id>sonar</id>
+            <properties>
+                <sonar.host.url>http://localhost:9000</sonar.host.url>
+                <sonar.login>c10b3d15b03b5bd1e9f9a4c485eb97b2b10b993f</sonar.login>
+                <sonar.projectKey>sonar:OrderApplication</sonar.projectKey>
+                <sonar.projectName>OrderApplication</sonar.projectName>
+                <sonar.binaries>target/classes</sonar.binaries>
+                <sonar.sources>src/main</sonar.sources>
+                <sonar.tests>src/test</sonar.tests>
+                <sonar.java.converagePlugin>jacoco</sonar.java.converagePlugin>
+                <sonar.jacoco.reportPath>target/test-reports/jacoco.exec</sonar.jacoco.reportPath>
+            </properties>
+        </profile>
+    </profiles>
+
     <properties>
         <java.version>11</java.version>
-        <sonar.login>c10b3d15b03b5bd1e9f9a4c485eb97b2b10b993f</sonar.login>
-        <sonar.projectKey>sonar:OrderApplication</sonar.projectKey>
-        <sonar.projectName>OrderApplication</sonar.projectName>
     </properties>
     <dependencies>
         <dependency>
@@ -61,15 +76,19 @@
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
                 <version>0.8.4</version>
+                <configuration>
+                    <destFile>${sonar.jacoco.reportPath}</destFile>
+                    <append>true</append>
+                </configuration>
                 <executions>
                     <execution>
-                        <id>default-prepare-agent</id>
+                        <id>prepare-agent</id>
                         <goals>
                             <goal>prepare-agent</goal>
                         </goals>
                     </execution>
                     <execution>
-                        <id>default-report</id>
+                        <id>report</id>
                         <phase>prepare-package</phase>
                         <goals>
                             <goal>report</goal>
