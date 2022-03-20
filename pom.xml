@@ -26,7 +26,6 @@
                 <sonar.sources>src/main</sonar.sources>
                 <sonar.tests>src/test</sonar.tests>
                 <sonar.java.converagePlugin>jacoco</sonar.java.converagePlugin>
-                <sonar.jacoco.reportPath>target/test-reports/jacoco.exec</sonar.jacoco.reportPath>
             </properties>
         </profile>
     </profiles>
@@ -76,10 +75,6 @@
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
                 <version>0.8.4</version>
-<!--                <configuration>-->
-<!--                    <destFile>${sonar.jacoco.reportPath}</destFile>-->
-<!--                    <append>true</append>-->
-<!--                </configuration>-->
                 <executions>
                     <execution>
                         <id>prepare-agent</id>
