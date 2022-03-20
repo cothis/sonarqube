@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class SonarqubeApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(SonarqubeApplication.class, args);
+		SpringApplication.run(SonarqubeApplication.class);
 	}
 
 }
